@@ -3,7 +3,7 @@
     /// <summary>
     /// 表示区域信息
     /// </summary>
-    public class Area
+    public class Area : IModel
     {
         /// <summary>
         /// 获取或设置编码

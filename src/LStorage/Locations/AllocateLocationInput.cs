@@ -43,10 +43,6 @@
                 new AllocateLocationSorting( AllocateLocationRCLD.Row, Sorting.Ascending),
                 new AllocateLocationSorting( AllocateLocationRCLD.Depth, Sorting.Descending)
         };
-        /// <summary>
-        /// 获取或设置分配库位数量
-        /// </summary>
-        public int Count { get; set; }
     }
 
 

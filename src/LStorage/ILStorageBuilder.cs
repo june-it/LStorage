@@ -7,8 +7,9 @@ namespace LStorage
     {
         IServiceCollection Services { get; }
 
-        ILStorageBuilder AddDbProvider<TDbProvider>()
-            where TDbProvider : class, IDbProvider;
+        ILStorageBuilder AddQuery<TQuerier, TModel>()
+            where TQuerier : class, IQuerier<TModel>
+            where TModel : class, IModel;
         ILStorageBuilder AddLocationAllocator<TLocationAllocator>()
             where TLocationAllocator : class, ILocationAllocator;
     }

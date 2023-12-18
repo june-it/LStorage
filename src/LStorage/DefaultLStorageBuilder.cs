@@ -11,10 +11,11 @@ namespace LStorage
             Services = services;
         }
 
-        public ILStorageBuilder AddDbProvider<TDbProvider>()
-            where TDbProvider : class, IDbProvider
+        public ILStorageBuilder AddQuery<TQuerier, TModel>()
+            where TQuerier : class, IQuerier<TModel>
+            where TModel : class, IModel
         {
-            Services.AddTransient<IDbProvider, TDbProvider>();
+            Services.AddTransient(typeof(IQuerier<TModel>), typeof(TQuerier));
             return this;
         }
         public ILStorageBuilder AddLocationAllocator<TLocationAllocator>()

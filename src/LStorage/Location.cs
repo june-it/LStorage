@@ -3,9 +3,8 @@
     /// <summary>
     /// 表示库位信息
     /// </summary>
-    public class Location
+    public class Location : IModel
     {
-
         /// <summary>
         /// 获取或设置编码
         /// </summary>

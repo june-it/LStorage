@@ -9,7 +9,9 @@ namespace LStorage.Locations
 {
     public class LocationAllocatorService : ILocationAllocatorService
     {
-        private readonly IDbProvider _dbProvider;
+        private readonly IQuerier<Area> _areaQuerier;
+        private readonly IQuerier<Shelf> _shelfQuerier;
+        private readonly IQuerier<Location> _locationQuerier;
         private static Dictionary<ShelfType, ILocationAllocator> _cache = new Dictionary<ShelfType, ILocationAllocator>();
         public LocationAllocatorService(IServiceProvider serviceProvider)
         {
@@ -26,32 +28,51 @@ namespace LStorage.Locations
 
                 }
             }
-            _dbProvider = serviceProvider.GetService<IDbProvider>();
+            _areaQuerier = serviceProvider.GetService<IQuerier<Area>>();
+            _shelfQuerier = serviceProvider.GetService<IQuerier<Shelf>>();
+            _locationQuerier = serviceProvider.GetService<IQuerier<Location>>();
         }
-        public async Task<IList<Location>> AllocateAsync(AllocateLocationInput input, CancellationToken cancellationToken = default)
+        public async Task<Location> AllocateAsync(AllocateLocationInput input, CancellationToken cancellationToken = default)
         {
 
-            var fromLocation = await _dbProvider.GetLocationAsync(input.FromCode) ?? throw new ArgumentException($"库位{input.FromCode}信息不存在。");
-            var fromArea = await _dbProvider.GetAreaAsync(fromLocation.AreaCode) ?? throw new ArgumentException($"区域{fromLocation.AreaCode}信息不存在。");
-            var fromShelf = await _dbProvider.GetShelfAsync(fromLocation.ShelfCode) ?? throw new ArgumentException($"货架{fromLocation.AreaCode}信息不存在。");
+            var fromLocation = await _locationQuerier.GetAsync(input.FromCode) ?? throw new ArgumentException($"库位{input.FromCode}信息不存在。");
+            var fromArea = await _areaQuerier.GetAsync(fromLocation.AreaCode) ?? throw new ArgumentException($"区域{fromLocation.AreaCode}信息不存在。");
+            var fromShelf = await _shelfQuerier.GetAsync(fromLocation.ShelfCode) ?? throw new ArgumentException($"货架{fromLocation.AreaCode}信息不存在。");
             if (!(string.IsNullOrEmpty(input.ToAreaCode) || string.IsNullOrEmpty(input.ToShelfCode)))
                 throw new ArgumentNullException("ToShelfCode", "区域编码或货架编码必须设置一项。");
-            Area toArea = null;
-            Shelf toShelf = null;
+
+
             // 优先货架编码
             if (!string.IsNullOrEmpty(input.ToShelfCode))
             {
-                toShelf = await _dbProvider.GetShelfAsync(input.ToShelfCode);
-                toArea = await _dbProvider.GetAreaAsync(toShelf.AreaCode);
+                var toShelf = await _shelfQuerier.GetAsync(input.ToShelfCode);
+                var toArea = await _areaQuerier.GetAsync(toShelf.AreaCode);
+                return await AllocateByShelfAsync(toShelf, fromArea, fromShelf, fromLocation, toArea, input, cancellationToken);
             }
             else
             {
-                toArea = await _dbProvider.GetAreaAsync(toShelf.AreaCode);
-                toShelf = _dbProvider.GetShelves()
-                    .Where(x => x.AreaCode == input.ToAreaCode)
-                    .OrderBy(x => x.Code)
-                    .FirstOrDefault();
+                var toArea = await _areaQuerier.GetAsync(input.ToAreaCode) ?? throw new ArgumentException($"区域{fromLocation.AreaCode}信息不存在。");
+                // 当指定货架不存在时，则按货架编号进行排序 
+                var sheleves = await _shelfQuerier.GetListAsync(x => x.AreaCode == input.ToAreaCode, x => x.Code);
+                if (sheleves == null || !sheleves.Any())
+                    throw new InvalidOperationException($"区域{input.ToAreaCode}无任何货架。");
+                Location allocatedLocation = null;
+                foreach (var toShelf in sheleves)
+                {
+                    allocatedLocation = await AllocateByShelfAsync(toShelf, fromArea, fromShelf, fromLocation, toArea, input, cancellationToken);
+                    if (allocatedLocation != null)
+                    {
+                        break;
+                    }
+                }
+                return allocatedLocation;
             }
+        }
+
+        private async Task<Location> AllocateByShelfAsync(Shelf toShelf, Area fromArea, Shelf fromShelf, Location fromLocation, Area toArea, AllocateLocationInput input, CancellationToken cancellationToken = default)
+        {
+            if (toShelf == null)
+                throw new InvalidOperationException("未查找任何可用货架。");
 
             if (!_cache.TryGetValue(toShelf.ShelfType, out var allocator))
             {

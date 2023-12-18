@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
 namespace LStorage.Locations
@@ -19,7 +18,7 @@ namespace LStorage.Locations
         /// <param name="context"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<IList<Location>> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default);
+        Task<Location> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default);
     }
 
 }

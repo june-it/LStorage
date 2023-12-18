@@ -3,7 +3,7 @@
     /// <summary>
     /// 表示货架信息
     /// </summary>
-    public class Shelf
+    public class Shelf : IModel
     {
         /// <summary>
         /// 获取或设置编码
