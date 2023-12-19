@@ -18,7 +18,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LStorage.Test", "tests\LSto
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shotsnaps", "shotsnaps", "{DBF3B43F-3D00-4D70-9A03-E492F71CE936}"
 	ProjectSection(SolutionItems) = preProject
-		shotsnaps\shotsnaps-01.png = shotsnaps\shotsnaps-01.png
+		shotsnaps\example-01.png = shotsnaps\example-01.png
+		shotsnaps\example-02.png = shotsnaps\example-02.png
+		shotsnaps\example-03.png = shotsnaps\example-03.png
+		shotsnaps\example-04.png = shotsnaps\example-04.png
+		shotsnaps\example-05.png = shotsnaps\example-05.png
+		shotsnaps\terms-01.png = shotsnaps\terms-01.png
+		shotsnaps\terms-02.png = shotsnaps\terms-02.png
+		shotsnaps\terms-04.png = shotsnaps\terms-04.png
 	EndProjectSection
 EndProject
 Global

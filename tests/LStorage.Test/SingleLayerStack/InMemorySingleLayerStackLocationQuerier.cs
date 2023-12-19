@@ -38,9 +38,9 @@
 
             #region 单层货架
             // S2
-            for (int row = 1; row <= 2; row++)
+            for (int row = 1; row <= 1; row++)
             {
-                for (int column = 1; column <= 1; column++)
+                for (int column = 1; column <= 2; column++)
                 {
                     _locations.Add(new Location()
                     {
@@ -60,9 +60,9 @@
                 }
             }
             // S3
-            for (int row = 1; row <= 2; row++)
+            for (int row = 1; row <= 1; row++)
             {
-                for (int column = 1; column <= 1; column++)
+                for (int column = 1; column <= 2; column++)
                 {
                     _locations.Add(new Location()
                     {
