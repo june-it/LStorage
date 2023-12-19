@@ -6,7 +6,7 @@ namespace LStorage.Locations
     /// <summary>
     /// 表示库位分配服务接口
     /// </summary>
-    public interface ILocationAllocatorService
+    public interface ILocationAllocationService
     {
         /// <summary>
         /// 分配库位

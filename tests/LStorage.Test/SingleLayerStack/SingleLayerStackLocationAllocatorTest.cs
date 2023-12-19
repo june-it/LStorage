@@ -30,7 +30,7 @@ namespace LStorage.Test.SingleLayerStack
         [Test]
         public async Task InternalAllocate()
         {
-            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
             var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A2-S2-001-001-001-01",
@@ -49,7 +49,7 @@ namespace LStorage.Test.SingleLayerStack
         [Test]
         public async Task InternalByShelfAllocate()
         {
-            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
             var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A2-S2-001-001-001-01",
@@ -68,7 +68,7 @@ namespace LStorage.Test.SingleLayerStack
         [Test]
         public async Task ExternalAllocate()
         {
-            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
             var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A1-S1-001-001-001-01",

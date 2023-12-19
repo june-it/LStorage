@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             var defaultLStorageBuilder = new DefaultLStorageBuilder(services);
             configure?.Invoke(defaultLStorageBuilder);
-            services.AddSingleton<ILocationAllocatorService, LocationAllocatorService>();
+            services.AddSingleton<ILocationAllocationService, LocationAllocationService>();
             services.AddTransient<DistanceSortingAlgorithm>();
             services.AddTransient<CustomRCLDSortingAlgorithm>();
             return services;

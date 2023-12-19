@@ -31,7 +31,7 @@ namespace LStorage.Test.PalletShuttleRacking
         [Test]
         public async Task InternalAllocate()
         {
-            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
             var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A1-S1-001-001-001-01",
@@ -50,7 +50,7 @@ namespace LStorage.Test.PalletShuttleRacking
         [Test]
         public async Task ExternalAllocate()
         {
-            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+            var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
             var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A1-S2-001-001-001-01",

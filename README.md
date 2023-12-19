@@ -56,7 +56,7 @@ service.AddLStorage(x =>
 1. 立库内部移库库位分配
 
 ```
-var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
 var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
 {
     FromCode = "A1-S1-001-001-001-01",
@@ -70,7 +70,7 @@ var location = await locationAllocatorService.AllocateAsync(new AllocateLocation
 2. 外部库位进入立库库位分配
 
 ```
-var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
 var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
 {
     FromCode = "A1-S2-001-001-001-01",
@@ -102,7 +102,7 @@ service.AddLStorage(x =>
 1. 区域内部移库分配
 
 ```
-var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
 var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
 {
     FromCode = "A2-S2-001-001-001-01",
@@ -115,7 +115,7 @@ var location = await locationAllocatorService.AllocateAsync(new AllocateLocation
 2. 单层货架间移库分配
 
 ```
-var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
 var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
 {
     FromCode = "A2-S2-001-001-001-01",
@@ -128,7 +128,7 @@ var location = await locationAllocatorService.AllocateAsync(new AllocateLocation
 3. 其他区域分配进单层货架分配库位
 
 ```
-var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocatorService>();
+var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
 var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
 {
     FromCode = "A3-S4-001-001-001-01",

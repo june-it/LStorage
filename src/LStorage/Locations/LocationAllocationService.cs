@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace LStorage.Locations
 {
-    public class LocationAllocatorService : ILocationAllocatorService
+    public class LocationAllocationService : ILocationAllocationService
     {
         private readonly IQuerier<Area> _areaQuerier;
         private readonly IQuerier<Shelf> _shelfQuerier;
         private readonly IQuerier<Location> _locationQuerier;
         private static Dictionary<ShelfType, ILocationAllocator> _cache = new Dictionary<ShelfType, ILocationAllocator>();
-        public LocationAllocatorService(IServiceProvider serviceProvider)
+        public LocationAllocationService(IServiceProvider serviceProvider)
         {
             var locationAllocators = serviceProvider.GetServices<ILocationAllocator>();
             if (!_cache.Any())
