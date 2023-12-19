@@ -23,15 +23,14 @@ namespace LStorage.Locations
         }
         public override ShelfType[] ShelfTypes => new[] { ShelfType.PalletShuttleRacking };
 
-
-        public override async Task<Location> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default)
+        public override async Task<AllocateLocationResult> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default)
         {
             if (!ShelfTypes.Contains(context.ToShelf.ShelfType))
             {
                 throw new InvalidOperationException($"货架库位分配服务{GetType().Name}不支持类型{context.ToShelf.ShelfType}货架库位分配。");
             }
             // 获取货架上的空库位
-            var locations = await _locationQuerier.GetListAsync(x => x.ShelfCode == context.ToShelf.Code && x.StockCount == 0);
+            var locations = await _locationQuerier.GetListAsync(x => x.ShelfId == context.ToShelf.Id && x.StockCount == 0);
 
             // 如果未指定排/列/层/深且为内部分配库位时，推荐距离最近的货位（指定库位所在列、所在层）
             if (context.ToShelf.Code == context.FromShelf.Code
@@ -67,12 +66,11 @@ namespace LStorage.Locations
                     Column = context.Input.Column ?? 0,
                     Layer = context.Input.Layer ?? 0,
                     Depth = context.Input.Depth ?? 0,
-                }, context.Input.SortingItems?.Select(x => x.RCLD).ToArray());
+                }, context.Input.SortingItems?.Select(x => x.Dimension).ToArray());
             }
 
-            return locations?.FirstOrDefault();
+            return new AllocateLocationResult(locations?.FirstOrDefault());
         }
-
 
 
     }

@@ -1,31 +1,31 @@
-﻿namespace LStorage.Test.SingleLayerStack
+﻿namespace LStorage.Test.Locations.SingleLayerStack
 {
     public class InMemorySingleLayerStackShelfQuerier : QuerierBase<Shelf>
     {
 
         public override IQueryable<Shelf> GetAll()
         {
-            return (new List<Shelf>() { new Shelf()
+            return new List<Shelf>() { new Shelf()
             {
                 Code = "S1",
-                AreaCode = "A1",
+                AreaId = "1",
                 ShelfType = ShelfType.PalletShuttleRacking,
                 IOType = ShelfIOType.FILO
             },
             new Shelf()
             {
                 Code = "S2",
-                AreaCode = "A2",
-                ShelfType = ShelfType.SingleLayerStack,
+                AreaId= "2",
+                ShelfType = ShelfType.SingleLayer,
                 IOType = ShelfIOType.FILO
             },
             new Shelf()
             {
                 Code = "S3",
-                AreaCode = "A2",
-                ShelfType = ShelfType.SingleLayerStack,
+                AreaId = "2",
+                ShelfType = ShelfType.SingleLayer,
                 IOType = ShelfIOType.FILO
-            }}).AsQueryable();
+            }}.AsQueryable();
         }
     }
 }

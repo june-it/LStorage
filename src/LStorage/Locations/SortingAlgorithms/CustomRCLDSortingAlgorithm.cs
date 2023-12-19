@@ -17,51 +17,51 @@ namespace LStorage.Locations.SortingAlgorithms
             {
                 if (i == 0)
                 {
-                    switch (sortingItems[i].RCLD)
+                    switch (sortingItems[i].Dimension)
                     {
-                        case AllocateLocationRCLD.Row:
+                        case AllocateLocationSortingDimension.Row:
                             switch (sortingItems[i].Direction)
                             {
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.OrderBy(x => x.RCLD.Row);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.OrderByDescending(x => x.RCLD.Row);
                                     break;
                             }
                             break;
-                        case AllocateLocationRCLD.Column:
+                        case AllocateLocationSortingDimension.Column:
                             switch (sortingItems[i].Direction)
                             {
 
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.OrderBy(x => x.RCLD.Column);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.OrderByDescending(x => x.RCLD.Column);
                                     break;
                             }
                             break;
-                        case AllocateLocationRCLD.Layer:
+                        case AllocateLocationSortingDimension.Layer:
                             switch (sortingItems[i].Direction)
                             {
 
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.OrderBy(x => x.RCLD.Layer);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.OrderByDescending(x => x.RCLD.Layer);
                                     break;
                             }
                             break;
-                        case AllocateLocationRCLD.Depth:
+                        case AllocateLocationSortingDimension.Depth:
                             switch (sortingItems[i].Direction)
                             {
 
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.OrderBy(x => x.RCLD.Depth);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.OrderByDescending(x => x.RCLD.Depth);
                                     break;
                             }
@@ -70,51 +70,51 @@ namespace LStorage.Locations.SortingAlgorithms
                 }
                 else
                 {
-                    switch (sortingItems[i].RCLD)
+                    switch (sortingItems[i].Dimension)
                     {
-                        case AllocateLocationRCLD.Row:
+                        case AllocateLocationSortingDimension.Row:
                             switch (sortingItems[i].Direction)
                             {
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.ThenBy(x => x.RCLD.Row);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.ThenByDescending(x => x.RCLD.Row);
                                     break;
                             }
                             break;
-                        case AllocateLocationRCLD.Column:
+                        case AllocateLocationSortingDimension.Column:
                             switch (sortingItems[i].Direction)
                             {
 
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.ThenBy(x => x.RCLD.Column);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.ThenByDescending(x => x.RCLD.Column);
                                     break;
                             }
                             break;
-                        case AllocateLocationRCLD.Layer:
+                        case AllocateLocationSortingDimension.Layer:
                             switch (sortingItems[i].Direction)
                             {
 
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.ThenBy(x => x.RCLD.Layer);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.ThenByDescending(x => x.RCLD.Layer);
                                     break;
                             }
                             break;
-                        case AllocateLocationRCLD.Depth:
+                        case AllocateLocationSortingDimension.Depth:
                             switch (sortingItems[i].Direction)
                             {
 
-                                case Sorting.Ascending:
+                                case AllocateLocationSortingDirection.Ascending:
                                     query = query.ThenBy(x => x.RCLD.Depth);
                                     break;
-                                case Sorting.Descending:
+                                case AllocateLocationSortingDirection.Descending:
                                     query = query.ThenByDescending(x => x.RCLD.Depth);
                                     break;
                             }

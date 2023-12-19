@@ -33,15 +33,16 @@
         /// 获取或设置分配深序号
         /// </summary>
         public int? Depth { get; set; }
+        /// <summary>
         /// 获取或设置库位排序方式
         /// </summary>
         public AllocateLocationSorting[] SortingItems { get; set; } =
             new AllocateLocationSorting[]
             {
-                new AllocateLocationSorting( AllocateLocationRCLD.Layer, AllocateSortingDirection.Ascending),
-                new AllocateLocationSorting( AllocateLocationRCLD.Column, AllocateSortingDirection.Ascending),
-                new AllocateLocationSorting( AllocateLocationRCLD.Row, AllocateSortingDirection.Ascending),
-                new AllocateLocationSorting( AllocateLocationRCLD.Depth, AllocateSortingDirection.Descending)
+                new AllocateLocationSorting( AllocateLocationSortingDimension.Layer, AllocateLocationSortingDirection.Ascending),
+                new AllocateLocationSorting( AllocateLocationSortingDimension.Column, AllocateLocationSortingDirection.Ascending),
+                new AllocateLocationSorting( AllocateLocationSortingDimension.Row, AllocateLocationSortingDirection.Ascending),
+                new AllocateLocationSorting( AllocateLocationSortingDimension.Depth, AllocateLocationSortingDirection.Descending)
         };
     }
 

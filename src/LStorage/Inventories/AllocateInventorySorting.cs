@@ -1,24 +1,32 @@
-﻿namespace LStorage.Locations
+﻿namespace LStorage.Inventories
 {
-
     /// <summary>
-    /// 表示库位排序
-    /// </summary> 
-    public class AllocateLocationSorting
+    /// 表示库存排序参数
+    /// </summary>
+    public class AllocateInventorySorting
     {
-        public AllocateLocationSorting(AllocateLocationSortingDimension dimension, AllocateLocationSortingDirection direction)
+        public AllocateInventorySorting(AllocateInventorySortingDimension dimension, AllocateInventorySortingDirection direction)
         {
             Dimension = dimension;
             Direction = direction;
         }
-        public AllocateLocationSortingDimension Dimension { get; }
-        public AllocateLocationSortingDirection Direction { get; }
+        public AllocateInventorySortingDimension Dimension { get; }
+        public AllocateInventorySortingDirection Direction { get; }
     }
+
     /// <summary>
-    /// 表示库位排序维度
+    /// 表示库存排序维度
     /// </summary>
-    public enum AllocateLocationSortingDimension
+    public enum AllocateInventorySortingDimension
     {
+        /// <summary>
+        /// 入库时间
+        /// </summary>
+        InboundTime,
+        /// <summary>
+        /// 数量
+        /// </summary>
+        Qty,
         /// <summary>
         /// 所在库位的排序号
         /// </summary>
@@ -37,9 +45,9 @@
         Depth,
     }
     /// <summary>
-    /// 表示库位排序方向
+    /// 表示库存排序方向
     /// </summary>
-    public enum AllocateLocationSortingDirection
+    public enum AllocateInventorySortingDirection
     {
         /// <summary>
         /// 升序
@@ -50,6 +58,4 @@
         /// </summary>
         Descending = 2,
     }
-
-
 }

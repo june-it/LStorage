@@ -1,4 +1,5 @@
 ﻿using LStorage;
+using LStorage.Inventories;
 using LStorage.Locations;
 using LStorage.Locations.SortingAlgorithms;
 using System;
@@ -11,9 +12,10 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             var defaultLStorageBuilder = new DefaultLStorageBuilder(services);
             configure?.Invoke(defaultLStorageBuilder);
-            services.AddSingleton<ILocationAllocationService, LocationAllocationService>();
+            services.AddScoped<ILocationAllocationService, LocationAllocationService>();
             services.AddTransient<DistanceSortingAlgorithm>();
             services.AddTransient<CustomRCLDSortingAlgorithm>();
+            services.AddScoped<IInventoryAllocationService, InventoryAllocationService>();
             return services;
         }
     }

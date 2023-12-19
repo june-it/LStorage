@@ -9,7 +9,7 @@ namespace LStorage.Locations.SortingAlgorithms
     /// </summary>
     public class DistanceSortingAlgorithm
     {
-        public IList<Location> Sort(IList<Location> locations, LocationRCLD locationRCLD, AllocateLocationRCLD[] soringItems)
+        public IList<Location> Sort(IList<Location> locations, LocationRCLD locationRCLD, AllocateLocationSortingDimension[] soringItems)
         {
             if (locations == null) throw new ArgumentNullException(nameof(locations), "目标库位列表不能为空。");
             if (soringItems == null) throw new ArgumentNullException(nameof(soringItems), "排序项不能为空。");
@@ -56,7 +56,7 @@ namespace LStorage.Locations.SortingAlgorithms
             Recursively(soringLocations, sortingValueLocations.GroupBy(x => x.Value.IrrelevantValue), -1, soringItems);
             return soringLocations;
         }
-        private void Recursively(List<Location> soringLocations, IEnumerable<IGrouping<int, KeyValuePair<Location, DistanceSortingValue>>> groupingLocations, int currentLevel, AllocateLocationRCLD[] allocateLocationRCLDs)
+        private void Recursively(List<Location> soringLocations, IEnumerable<IGrouping<int, KeyValuePair<Location, DistanceSortingValue>>> groupingLocations, int currentLevel, AllocateLocationSortingDimension[] allocateLocationRCLDs)
         {
             currentLevel += 1;
             foreach (var groupingLocation in groupingLocations)
@@ -64,16 +64,16 @@ namespace LStorage.Locations.SortingAlgorithms
                 var subGroupingLocations = groupingLocation.GroupBy(x => x.Value.LayerValue).OrderBy(x => x.Key);
                 switch (allocateLocationRCLDs[currentLevel])
                 {
-                    case AllocateLocationRCLD.Row:
+                    case AllocateLocationSortingDimension.Row:
                         subGroupingLocations = groupingLocation.GroupBy(x => x.Value.RowValue).OrderBy(x => x.Key);
                         break;
-                    case AllocateLocationRCLD.Column:
+                    case AllocateLocationSortingDimension.Column:
                         subGroupingLocations = groupingLocation.GroupBy(x => x.Value.ColumnValue).OrderBy(x => x.Key);
                         break;
-                    case AllocateLocationRCLD.Layer:
+                    case AllocateLocationSortingDimension.Layer:
                         subGroupingLocations = groupingLocation.GroupBy(x => x.Value.LayerValue).OrderBy(x => x.Key);
                         break;
-                    case AllocateLocationRCLD.Depth:
+                    case AllocateLocationSortingDimension.Depth:
                         subGroupingLocations = groupingLocation.GroupBy(x => x.Value.DepthValue).OrderBy(x => x.Key);
                         break;
                     default:

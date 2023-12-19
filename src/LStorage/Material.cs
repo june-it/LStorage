@@ -1,32 +1,38 @@
 ﻿namespace LStorage
 {
     /// <summary>
-    /// 表示区域信息
+    /// 表示物料信息
     /// </summary>
-    public class Area : IModel
+    public class Material : IModel
     {
         /// <summary>
-        /// 表示初始化区域信息
+        /// 表示初始化物料信息
         /// </summary>
-        public Area()
+        public Material()
         {
 
         }
         /// <summary>
-        /// 表示初始化区域信息
+        /// 表示初始化物料信息
         /// </summary>
         /// <param name="id">Id</param>
-        /// <param name="code">编码</param>
-        public Area(string id, string code)
+        /// <param name="name">名称</param>
+        /// <param name="code">编号</param>
+        public Material(string id, string name, string code)
         {
             Id = id;
+            Name = name;
             Code = code;
         }
 
         /// <summary>
-        /// 获取或设置主键
+        /// 获取或设置Id
         /// </summary>
         public virtual string Id { get; set; }
+        /// <summary>
+        /// 获取或设置名称
+        /// </summary>
+        public virtual string Name { get; set; }
         /// <summary>
         /// 获取或设置编码
         /// </summary>

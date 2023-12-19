@@ -1,7 +1,7 @@
 ﻿using LStorage.Locations;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LStorage.Test.PalletShuttleRacking
+namespace LStorage.Test.Locations.PalletShuttleRacking
 {
     /// <summary>
     /// 穿梭式货架测试
@@ -16,9 +16,9 @@ namespace LStorage.Test.PalletShuttleRacking
                 .AddLogging()
                 .AddLStorage(x =>
                 {
-                    x.AddQuery<InMemoryPalletShuttleRackingAreaQuerier, Area>();
-                    x.AddQuery<InMemoryPalletShuttleRackingShelfQuerier, Shelf>();
-                    x.AddQuery<InMemoryPalletShuttleRackingLocationQuerier, Location>();
+                    x.AddQuerier<InMemoryPalletShuttleRackingAreaQuerier, Area>();
+                    x.AddQuerier<InMemoryPalletShuttleRackingShelfQuerier, Shelf>();
+                    x.AddQuerier<InMemoryPalletShuttleRackingLocationQuerier, Location>();
                     x.AddLocationAllocator<PalletShuttleLocationAllocator>();
                 });
             ServiceProvider = services.BuildServiceProvider();
@@ -32,15 +32,15 @@ namespace LStorage.Test.PalletShuttleRacking
         public async Task InternalAllocate()
         {
             var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
-            var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
+            var result = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A1-S1-001-001-001-01",
                 ToShelfCode = "S1"
             });
             // 不为空
-            Assert.IsNotNull(location);
+            Assert.IsNotNull(result.Location);
             // 不能分配同层同排同列的库位
-            Assert.False(location.RCLD.Layer == 1 && location.RCLD.Row == 1 && location.RCLD.Column == 1);
+            Assert.False(result.Location.RCLD.Layer == 1 && result.Location.RCLD.Row == 1 && result.Location.RCLD.Column == 1);
             Assert.Pass();
         }
         /// <summary>
@@ -51,15 +51,15 @@ namespace LStorage.Test.PalletShuttleRacking
         public async Task ExternalAllocate()
         {
             var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
-            var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
+            var result = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A1-S2-001-001-001-01",
                 ToShelfCode = "S1"
             });
             // 不为空
-            Assert.IsNotNull(location);
+            Assert.IsNotNull(result.Location);
             // 不能分配同层同排同列的库位
-            Assert.True(location.RCLD.Layer == 1 && location.RCLD.Row == 1 && location.RCLD.Column == 1);
+            Assert.True(result.Location.RCLD.Layer == 1 && result.Location.RCLD.Row == 1 && result.Location.RCLD.Column == 1);
             Assert.Pass();
         }
     }

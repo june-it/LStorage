@@ -1,4 +1,4 @@
-﻿namespace LStorage.Test.PalletShuttleRacking
+﻿namespace LStorage.Test.Locations.PalletShuttleRacking
 {
     public class InMemoryPalletShuttleRackingLocationQuerier : QuerierBase<Location>
     {
@@ -6,6 +6,7 @@
         {
             List<Location> _locations = new List<Location>();
 
+            int id = 0;
             #region 立库
             for (int layer = 1; layer <= 1; layer++)
             {
@@ -17,9 +18,10 @@
                         {
                             _locations.Add(new Location()
                             {
+                                Id = (id + 1).ToString(),
                                 Code = $"A1-S1-{row:0#0}-{column:0#0}-{layer:0#0}-{depth:0#}",
-                                AreaCode = "A1",
-                                ShelfCode = "S1",
+                                AreaId = "1",
+                                ShelfId = "1",
                                 MaxStockCount = 1,
                                 RCLD = new LocationRCLD()
                                 {
@@ -44,9 +46,10 @@
                 {
                     _locations.Add(new Location()
                     {
+                        Id = (id + 1).ToString(),
                         Code = $"A2-S2-{row:0#0}-{column:0#0}-001-01",
-                        AreaCode = "A2",
-                        ShelfCode = "S2",
+                        AreaId = "2",
+                        ShelfId = "2",
                         MaxStockCount = 1,
                         RCLD = new LocationRCLD()
                         {

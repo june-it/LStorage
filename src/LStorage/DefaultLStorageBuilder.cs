@@ -11,7 +11,7 @@ namespace LStorage
             Services = services;
         }
 
-        public ILStorageBuilder AddQuery<TQuerier, TModel>()
+        public ILStorageBuilder AddQuerier<TQuerier, TModel>()
             where TQuerier : class, IQuerier<TModel>
             where TModel : class, IModel
         {

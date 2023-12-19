@@ -1,7 +1,7 @@
 ﻿using LStorage.Locations;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LStorage.Test.SingleLayerStack
+namespace LStorage.Test.Locations.SingleLayerStack
 {
     /// <summary>
     /// 单层地堆式货架测试
@@ -16,9 +16,9 @@ namespace LStorage.Test.SingleLayerStack
                 .AddLogging()
                 .AddLStorage(x =>
                 {
-                    x.AddQuery<InMemorySingleLayerStackAreaQuerier, Area>();
-                    x.AddQuery<InMemorySingleLayerStackShelfQuerier, Shelf>();
-                    x.AddQuery<InMemorySingleLayerStackLocationQuerier, Location>();
+                    x.AddQuerier<InMemorySingleLayerStackAreaQuerier, Area>();
+                    x.AddQuerier<InMemorySingleLayerStackShelfQuerier, Shelf>();
+                    x.AddQuerier<InMemorySingleLayerStackLocationQuerier, Location>();
                     x.AddLocationAllocator<SingleLayerLocationAllocator>();
                 });
             ServiceProvider = services.BuildServiceProvider();
@@ -31,15 +31,15 @@ namespace LStorage.Test.SingleLayerStack
         public async Task InternalAllocate()
         {
             var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
-            var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
+            var result = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A2-S2-001-001-001-01",
                 ToAreaCode = "A2"
             });
             // 不为空
-            Assert.IsNotNull(location);
-            Assert.True(location.ShelfCode == "S2");
-            Assert.True(location.RCLD.Layer == 1 && location.RCLD.Row == 2 && location.RCLD.Column == 1);
+            Assert.IsNotNull(result.Location);
+            Assert.True(result.Location.ShelfId == "2");
+            Assert.True(result.Location.RCLD.Layer == 1 && result.Location.RCLD.Row == 2 && result.Location.RCLD.Column == 1);
             Assert.Pass();
         }
         /// <summary>
@@ -50,15 +50,15 @@ namespace LStorage.Test.SingleLayerStack
         public async Task InternalByShelfAllocate()
         {
             var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
-            var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
+            var result = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A2-S2-001-001-001-01",
                 ToShelfCode = "S3"
             });
             // 不为空
-            Assert.IsNotNull(location);
-            Assert.True(location.ShelfCode == "S3");
-            Assert.True(location.RCLD.Layer == 1 && location.RCLD.Row == 1 && location.RCLD.Column == 1);
+            Assert.IsNotNull(result.Location);
+            Assert.True(result.Location.ShelfId == "3");
+            Assert.True(result.Location.RCLD.Layer == 1 && result.Location.RCLD.Row == 1 && result.Location.RCLD.Column == 1);
             Assert.Pass();
         }
         /// <summary>
@@ -69,15 +69,15 @@ namespace LStorage.Test.SingleLayerStack
         public async Task ExternalAllocate()
         {
             var locationAllocatorService = ServiceProvider.GetRequiredService<ILocationAllocationService>();
-            var location = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
+            var result = await locationAllocatorService.AllocateAsync(new AllocateLocationInput()
             {
                 FromCode = "A1-S1-001-001-001-01",
                 ToAreaCode = "A2"
             });
             // 不为空
-            Assert.IsNotNull(location);
-            Assert.True(location.AreaCode == "A2");
-            Assert.True(location.RCLD.Layer == 1 && location.RCLD.Row == 2 && location.RCLD.Column == 1);
+            Assert.IsNotNull(result.Location);
+            Assert.True(result.Location.AreaId == "2");
+            Assert.True(result.Location.RCLD.Layer == 1 && result.Location.RCLD.Row == 2 && result.Location.RCLD.Column == 1);
             Assert.Pass();
         }
     }

@@ -1,35 +1,41 @@
 ﻿namespace LStorage
 {
     /// <summary>
-    /// 表示区域信息
+    /// 表示托盘信息
     /// </summary>
-    public class Area : IModel
+    public class Pallet : IModel
     {
         /// <summary>
-        /// 表示初始化区域信息
+        /// 表示初始化托盘信息
         /// </summary>
-        public Area()
+        public Pallet()
         {
 
         }
         /// <summary>
-        /// 表示初始化区域信息
+        /// 表示初始化托盘信息
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="code">编码</param>
-        public Area(string id, string code)
+        /// <param name="locationId">库位Id</param>
+        public Pallet(string id, string code, string locationId)
         {
             Id = id;
             Code = code;
+            LocationId = locationId;
         }
 
         /// <summary>
-        /// 获取或设置主键
+        /// 获取或设置Id
         /// </summary>
         public virtual string Id { get; set; }
         /// <summary>
         /// 获取或设置编码
         /// </summary>
         public virtual string Code { get; set; }
+        /// <summary>
+        /// 获取或设置库位Id
+        /// </summary>
+        public virtual string LocationId { get; set; }
     }
 }

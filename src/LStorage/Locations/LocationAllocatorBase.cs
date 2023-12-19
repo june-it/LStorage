@@ -18,7 +18,7 @@ namespace LStorage.Locations
 
         public abstract ShelfType[] ShelfTypes { get; }
         protected ILogger Logger { get; }
-        public abstract Task<Location> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default);
+        public abstract Task<AllocateLocationResult> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 筛选深依赖的库位列表

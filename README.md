@@ -64,7 +64,10 @@ var location = await locationAllocatorService.AllocateAsync(new AllocateLocation
 });
 
 ```
-分配结果如图
+测试中库位`A1-S1-001-001-001-03`设置了托盘，分配结果为`A1-S1-002-001-001-06`
+
+如图
+
 ![立库内部移库库位分配](/shotsnaps/example-01.png) 
 
 2. 外部库位进入立库库位分配
@@ -78,7 +81,9 @@ var location = await locationAllocatorService.AllocateAsync(new AllocateLocation
 });
 
 ```
-分配结果如图
+测试中库位`A1-S1-001-001-001-03`设置了托盘，分配结果为`A1-S1-001-001-001-02`
+
+如图
 ![立库内部移库库位分配](/shotsnaps/example-02.png) 
 
 

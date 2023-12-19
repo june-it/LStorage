@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LStorage
@@ -22,13 +23,16 @@ namespace LStorage
         /// </summary>
         /// <param name="predicate">查询条件</param>
         /// <param name="orderByKeySelector">排序条件</param>
+        /// <param name="cancellationToken">取消令牌</param> 
         /// <returns></returns>
-        Task<IList<TModel>> GetListAsync(Func<TModel, bool> predicate, Func<TModel, string> orderByKeySelector = null);
+        Task<IList<TModel>> GetListAsync(Func<TModel, bool> predicate, Func<TModel, string> orderByKeySelector = null, CancellationToken cancellationToken = default);
+
         /// <summary>
         /// 获取一条模型数据记录
         /// </summary>
-        /// <param name="code">唯一编码</param>
+        /// <param name="predicate">查询条件</param> 
+        /// <param name="cancellationToken">取消令牌</param> 
         /// <returns></returns>
-        Task<TModel> GetAsync(string code);
+        Task<TModel> GetAsync(Func<TModel, bool> predicate, CancellationToken cancellationToken = default);
     }
 }
