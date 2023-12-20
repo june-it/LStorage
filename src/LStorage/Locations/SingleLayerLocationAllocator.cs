@@ -30,12 +30,12 @@ namespace LStorage.Locations
 
         public override async Task<AllocateLocationResult> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default)
         {
-            if (!ShelfTypes.Contains(context.ToShelf.ShelfType))
+            if (!ShelfTypes.Contains(context.ToShelf.Type))
             {
-                throw new InvalidOperationException($"货架库位分配服务{GetType().Name}不支持类型{context.ToShelf.ShelfType}货架库位分配。");
+                throw new InvalidOperationException($"货架库位分配服务{GetType().Name}不支持类型{context.ToShelf.Type}货架库位分配。");
             }
             // 获取货架上的空库位
-            var locations = await _locationQuerier.GetListAsync(x => x.ShelfId == context.ToShelf.Id && x.StockCount == 0);
+            var locations = await _locationQuerier.GetListAsync(x => x.ShelfId == context.ToShelf.Id && x.PalletCount == 0);
 
             // 如果未指定排/列/层/深且为内部分配库位时，推荐距离最近的货位（指定库位所在列、所在层）
             if (context.ToShelf.Code == context.FromShelf.Code

@@ -22,7 +22,7 @@
                                 Code = $"A1-S1-{row:0#0}-{column:0#0}-{layer:0#0}-{depth:0#}",
                                 AreaId = "1",
                                 ShelfId = "1",
-                                MaxStockCount = 1,
+                                MaxPalletCount = 1,
                                 RCLD = new LocationRCLD()
                                 {
                                     Column = column,
@@ -30,7 +30,7 @@
                                     Layer = layer,
                                     Row = row,
                                 },
-                                StockCount = 0
+                                PalletCount = 0
                             });
                         }
                     }

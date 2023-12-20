@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,12 +11,12 @@ namespace LStorage
         where TModel : class, IModel
     {
         public abstract IQueryable<TModel> GetAll();
-        public virtual Task<TModel> GetAsync(Func<TModel, bool> predicate, CancellationToken cancellationToken = default)
+        public virtual Task<TModel> GetAsync(Expression<Func<TModel, bool>> predicate, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            return Task.FromResult(GetAll().FirstOrDefault(predicate));
+            return Task.FromResult(GetAll().Where(predicate).FirstOrDefault());
         }
-        public async virtual Task<IList<TModel>> GetListAsync(Func<TModel, bool> predicate, Func<TModel, string> orderByKeySelector = null, CancellationToken cancellationToken = default)
+        public async virtual Task<IList<TModel>> GetListAsync(Expression<Func<TModel, bool>> predicate, Func<TModel, string> orderByKeySelector = null, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (orderByKeySelector == null)

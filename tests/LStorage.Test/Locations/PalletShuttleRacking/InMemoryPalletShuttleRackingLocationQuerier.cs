@@ -22,7 +22,7 @@
                                 Code = $"A1-S1-{row:0#0}-{column:0#0}-{layer:0#0}-{depth:0#}",
                                 AreaId = "1",
                                 ShelfId = "1",
-                                MaxStockCount = 1,
+                                MaxPalletCount = 1,
                                 RCLD = new LocationRCLD()
                                 {
                                     Column = column,
@@ -30,7 +30,7 @@
                                     Layer = layer,
                                     Row = row,
                                 },
-                                StockCount = 0
+                                PalletCount = 0
                             });
                         }
                     }
@@ -50,7 +50,7 @@
                         Code = $"A2-S2-{row:0#0}-{column:0#0}-001-01",
                         AreaId = "2",
                         ShelfId = "2",
-                        MaxStockCount = 1,
+                        MaxPalletCount = 1,
                         RCLD = new LocationRCLD()
                         {
                             Column = column,
@@ -58,7 +58,7 @@
                             Layer = 1,
                             Row = row,
                         },
-                        StockCount = 0
+                        PalletCount = 0
                     });
                 }
             }
@@ -69,7 +69,7 @@
             x.RCLD.Layer == 1
             && x.RCLD.Row == 1
             && x.RCLD.Column == 1
-            && x.RCLD.Depth == 3).StockCount = 1;
+            && x.RCLD.Depth == 3).PalletCount = 1;
 
 
             return _locations.AsQueryable();

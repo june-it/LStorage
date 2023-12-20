@@ -25,7 +25,7 @@
             Id = id;
             Code = code;
             AreaId = areaId;
-            ShelfType = shelfType;
+            Type = shelfType;
             IOType = ioType;
         }
 
@@ -44,7 +44,7 @@
         /// <summary>
         /// 获取或设置货架类型
         /// </summary>
-        public virtual ShelfType ShelfType { get; set; }
+        public virtual ShelfType Type { get; set; }
         /// <summary>
         /// 获取或设置存取方式
         /// </summary>

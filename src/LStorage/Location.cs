@@ -20,17 +20,17 @@
         /// <param name="shelfId">货架Id</param>
         /// <param name="areaId">区域Id</param>
         /// <param name="rcld">库位位置</param>
-        /// <param name="maxStockCount">最大库存数量</param>
-        /// <param name="stockCount">当前库存数量</param>
-        public Location(string id, string code, string shelfId, string areaId, LocationRCLD rcld, int maxStockCount, int stockCount)
+        /// <param name="maxPalletCount">最大库存数量</param>
+        /// <param name="palletCount">当前库存数量</param>
+        public Location(string id, string code, string shelfId, string areaId, LocationRCLD rcld, int maxPalletCount, int palletCount)
         {
             Id = id;
             Code = code;
             ShelfId = shelfId;
             AreaId = areaId;
             RCLD = rcld;
-            MaxStockCount = maxStockCount;
-            StockCount = stockCount;
+            MaxPalletCount = maxPalletCount;
+            PalletCount = palletCount;
         }
 
         /// <summary>
@@ -54,36 +54,36 @@
         /// </summary>
         public virtual LocationRCLD RCLD { get; set; }
         /// <summary>
-        /// 获取或设置最多库存数量
+        /// 获取或设置最多托盘数量
         /// </summary> 
-        public virtual int MaxStockCount { get; set; }
+        public virtual int MaxPalletCount { get; set; }
         /// <summary>
-        /// 获取或设置库存数量
+        /// 获取或设置托盘数量
         /// </summary>
-        public virtual int StockCount { get; set; }
+        public virtual int PalletCount { get; set; }
     }
 
     /// <summary>
     ///  表示库位的排列层深
     /// </summary>
-    public struct LocationRCLD
+    public class LocationRCLD
     {
         /// <summary>
-        /// 表示排序号
+        /// 获取或设置排序号
         /// </summary>
-        public int Row;
+        public int Row { get; set; }
         /// <summary>
-        /// 表示列序号
+        /// 获取或设置列序号
         /// </summary>
-        public int Column;
+        public int Column { get; set; }
         /// <summary>
-        /// 表示层序号
+        /// 获取或设置层序号
         /// </summary>
-        public int Layer;
+        public int Layer { get; set; }
         /// <summary>
-        /// 表示深度序号
+        /// 获取或设置深度序号
         /// </summary>
-        public int Depth;
+        public int Depth { get; set; }
     }
 
 }

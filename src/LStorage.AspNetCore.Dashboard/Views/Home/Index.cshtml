@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "仓库布局图";
+}
+@section Styles{
+    <style>
+        #canvasBody {
+            overflow: scroll;
+        }
+    </style>
+}
+
+<div class="card">
+    <div class="card-header">
+        仓库布局图
+    </div>
+    <div class="card-body" id="canvasBody">
+        <canvas id="canvas" width="500" height="500"></canvas>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        var canvasBodyStyle = document.getElementById("canvasBody").style;
+        canvasBodyStyle.width = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) + "px";
+        canvasBodyStyle.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) + "px";
+        window.addEventListener("resize", function () {
+            canvasBodyStyle.width = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) + "px";
+            canvasBodyStyle.height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) + "px";
+        })
+
+        var canvas = document.getElementById("canvas"); // 得到DOM对象
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            // 全局变量
+            var unitPixel = 100;
+            var borderPixel = 2;
+            var isDisplayBorder = true;
+            // 绘制单元格
+            function drawRect(row, column, color) {
+                ctx.fillStyle = color;
+                ctx.fillRect(column * unitPixel + borderPixel, row * unitPixel + borderPixel, unitPixel, unitPixel);
+            }
+            // 绘制 100x100的单元格
+            var cells = [];
+            var totalRow = Math.floor(canvas.height / unitPixel)
+            var totalColumn = Math.floor(canvas.width / unitPixel);
+            console.log(totalRow + "," + totalColumn)
+            for (var row = 0; row < totalRow; row++) {
+                for (var column = 0; column < totalColumn; column++) {
+                    if (isDisplayBorder) {
+                        ctx.fillStyle = "#e3e3e3";
+                        ctx.fillRect(column * unitPixel, row * unitPixel, borderPixel, unitPixel);
+                        ctx.fillRect(column * unitPixel, row * unitPixel, unitPixel, borderPixel);
+                    }
+                    cells.push({
+                        x: (column + 1) * unitPixel,
+                        y: (row + 1) * unitPixel
+                    })
+                }
+            }
+            // 绘制边框
+            ctx.fillStyle = "#e3e3e3";
+            ctx.fillRect(0, 0, borderPixel*2, canvas.width);
+            ctx.fillRect(0, 0, canvas.height, borderPixel * 2);
+            ctx.fillRect(canvas.width - borderPixel * 2, 0, borderPixel * 2 * 2, canvas.width);
+            ctx.fillRect(0, canvas.height - borderPixel * 2, canvas.height, borderPixel * 2 * 2);
+
+        }
+    </script>
+}

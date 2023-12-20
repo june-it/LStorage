@@ -10,7 +10,7 @@
                 Id="1",
                 Code = "S1",
                 AreaId = "1",
-                ShelfType = ShelfType.PalletShuttleRacking,
+                Type = ShelfType.PalletShuttleRacking,
                 IOType = ShelfIOType.FILO
             },
             new Shelf()
@@ -18,7 +18,7 @@
                 Id="2",
                 Code = "S2",
                 AreaId = "2",
-                ShelfType = ShelfType.SingleLayer,
+                Type = ShelfType.SingleLayer,
                 IOType = ShelfIOType.FILO
             }}.AsQueryable();
         }

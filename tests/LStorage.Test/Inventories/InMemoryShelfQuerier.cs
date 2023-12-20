@@ -10,7 +10,7 @@
                 Id="1",
                 Code = "S1",
                 AreaId = "1",
-                ShelfType = ShelfType.PalletShuttleRacking,
+                Type = ShelfType.PalletShuttleRacking,
                 IOType = ShelfIOType.FILO
             }}.AsQueryable();
         }

@@ -75,9 +75,9 @@ namespace LStorage.Locations
             if (toShelf == null)
                 throw new InvalidOperationException("未查找任何可用货架。");
 
-            if (!_cache.TryGetValue(toShelf.ShelfType, out var allocator))
+            if (!_cache.TryGetValue(toShelf.Type, out var allocator))
             {
-                throw new InvalidOperationException($"{toShelf.ShelfType}未注册分配服务。");
+                throw new InvalidOperationException($"{toShelf.Type}未注册分配服务。");
             }
             return await allocator.AllocateAsync(new AllocateLocationContext(fromArea, fromShelf, fromLocation, toArea, toShelf, input), cancellationToken);
 

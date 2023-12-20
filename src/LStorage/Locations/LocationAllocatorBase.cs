@@ -40,7 +40,7 @@ namespace LStorage.Locations
                             && x.RCLD.Layer == location.RCLD.Layer
                             && x.RCLD.Column == location.RCLD.Column
                             && x.RCLD.Row == location.RCLD.Row
-                            && x.StockCount == 1) && location.StockCount == 0)
+                            && x.PalletCount == 1) && location.PalletCount == 0)
                         {
                             availableLocations.Add(location);
                         }
@@ -53,14 +53,14 @@ namespace LStorage.Locations
                             && x.RCLD.Layer == location.RCLD.Layer
                             && x.RCLD.Column == location.RCLD.Column
                             && x.RCLD.Row == location.RCLD.Row
-                            && x.StockCount == 1)
+                            && x.PalletCount == 1)
                             &&
                         locations.Any(x =>
                             x.RCLD.Depth > location.RCLD.Depth
                             && x.RCLD.Layer == location.RCLD.Layer
                             && x.RCLD.Column == location.RCLD.Column
                             && x.RCLD.Row == location.RCLD.Row
-                            && x.StockCount == 1)) && location.StockCount == 0)
+                            && x.PalletCount == 1)) && location.PalletCount == 0)
                         {
                             availableLocations.Add(location);
                         }
