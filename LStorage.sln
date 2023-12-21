@@ -28,10 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shotsnaps", "shotsnaps", "{
 		shotsnaps\terms-04.png = shotsnaps\terms-04.png
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LStorage.EntityFrameworkCore", "src\LStorage.EntityFrameworkCore\LStorage.EntityFrameworkCore.csproj", "{5C6438C7-9885-41E4-8040-3467E206079F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LStorage.AspNetCore.Dashboard", "src\LStorage.AspNetCore.Dashboard\LStorage.AspNetCore.Dashboard.csproj", "{F9250C4F-6FC1-4C7D-AF25-96905C29696F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,14 +42,6 @@ Global
 		{662A3465-09AC-4703-BBA7-806BC2BF57C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{662A3465-09AC-4703-BBA7-806BC2BF57C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{662A3465-09AC-4703-BBA7-806BC2BF57C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C6438C7-9885-41E4-8040-3467E206079F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C6438C7-9885-41E4-8040-3467E206079F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C6438C7-9885-41E4-8040-3467E206079F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C6438C7-9885-41E4-8040-3467E206079F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9250C4F-6FC1-4C7D-AF25-96905C29696F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9250C4F-6FC1-4C7D-AF25-96905C29696F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9250C4F-6FC1-4C7D-AF25-96905C29696F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9250C4F-6FC1-4C7D-AF25-96905C29696F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,8 +50,6 @@ Global
 		{3428FFEC-8BD6-4BBF-9F4E-2F778F89BF55} = {1751F76F-3941-4274-A479-AB00CA71A365}
 		{662A3465-09AC-4703-BBA7-806BC2BF57C7} = {20DA92C4-A389-4BE5-9F9F-4A149958B4D2}
 		{DBF3B43F-3D00-4D70-9A03-E492F71CE936} = {181005EF-8FBF-45ED-9660-A137B51A7B22}
-		{5C6438C7-9885-41E4-8040-3467E206079F} = {1751F76F-3941-4274-A479-AB00CA71A365}
-		{F9250C4F-6FC1-4C7D-AF25-96905C29696F} = {1751F76F-3941-4274-A479-AB00CA71A365}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4482E09-EDA4-4A0C-98F8-0670BDAD5558}
