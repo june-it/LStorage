@@ -1,7 +1,19 @@
 ﻿namespace LStorage.Locations
 {
+    /// <summary>
+    /// 表示分配库位的上下文数据
+    /// </summary>
     public class AllocateLocationContext
     {
+        /// <summary>
+        /// 初始化分配库位的上下文数据
+        /// </summary>
+        /// <param name="fromArea">来源区域</param>
+        /// <param name="fromShelf">来源货架</param>
+        /// <param name="fromLocation">来源库位</param>
+        /// <param name="toArea">目标区域</param>
+        /// <param name="toShelf">目标货架</param>
+        /// <param name="input">分配参数</param>
         public AllocateLocationContext(Area fromArea, Shelf fromShelf, Location fromLocation, Area toArea, Shelf toShelf, AllocateLocationInput input)
         {
             FromArea = fromArea;

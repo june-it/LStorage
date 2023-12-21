@@ -1,4 +1,5 @@
-﻿using LStorage.Locations;
+﻿using LStorage.Inventories;
+using LStorage.Locations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LStorage
@@ -10,7 +11,6 @@ namespace LStorage
         {
             Services = services;
         }
-
         public ILStorageBuilder AddQuerier<TQuerier, TModel>()
             where TQuerier : class, IQuerier<TModel>
             where TModel : class, IModel
@@ -22,6 +22,13 @@ namespace LStorage
             where TLocationAllocator : class, ILocationAllocator
         {
             Services.AddTransient<ILocationAllocator, TLocationAllocator>();
+            return this;
+        }
+
+        public ILStorageBuilder AddLocationDependencyFinder<TInventoryDependencyFinder>()
+            where TInventoryDependencyFinder : class, ILocationDependencyFinder
+        {
+            Services.AddTransient<ILocationDependencyFinder, TInventoryDependencyFinder>();
             return this;
         }
     }

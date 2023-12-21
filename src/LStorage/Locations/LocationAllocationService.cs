@@ -34,7 +34,7 @@ namespace LStorage.Locations
         }
 
 
-        public async virtual Task<AllocateLocationResult> AllocateAsync(AllocateLocationInput input, CancellationToken cancellationToken = default)
+        public async virtual Task<AllocateLocationOutput> AllocateAsync(AllocateLocationInput input, CancellationToken cancellationToken = default)
         {
 
             var fromLocation = await _locationQuerier.GetAsync(x => x.Code == input.FromCode) ?? throw new ArgumentException($"库位{input.FromCode}信息不存在。");
@@ -57,7 +57,7 @@ namespace LStorage.Locations
                 var sheleves = await _shelfQuerier.GetListAsync(x => x.AreaId == toArea.Id, x => x.Code);
                 if (sheleves == null || !sheleves.Any())
                     throw new InvalidOperationException($"区域{input.ToAreaCode}无任何货架。");
-                AllocateLocationResult allocatedLocation = null;
+                AllocateLocationOutput allocatedLocation = null;
                 foreach (var toShelf in sheleves)
                 {
                     allocatedLocation = await AllocateByShelfAsync(toShelf, fromArea, fromShelf, fromLocation, toArea, input, cancellationToken);
@@ -70,7 +70,7 @@ namespace LStorage.Locations
             }
         }
 
-        protected async virtual Task<AllocateLocationResult> AllocateByShelfAsync(Shelf toShelf, Area fromArea, Shelf fromShelf, Location fromLocation, Area toArea, AllocateLocationInput input, CancellationToken cancellationToken = default)
+        protected async virtual Task<AllocateLocationOutput> AllocateByShelfAsync(Shelf toShelf, Area fromArea, Shelf fromShelf, Location fromLocation, Area toArea, AllocateLocationInput input, CancellationToken cancellationToken = default)
         {
             if (toShelf == null)
                 throw new InvalidOperationException("未查找任何可用货架。");

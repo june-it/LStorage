@@ -18,7 +18,7 @@ namespace LStorage.Locations
         /// <param name="context"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<AllocateLocationResult> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default);
+        Task<AllocateLocationOutput> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default);
     }
 
 }

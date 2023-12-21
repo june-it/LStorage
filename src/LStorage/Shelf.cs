@@ -56,6 +56,9 @@
         /// <summary>
         /// 先进先出
         /// </summary>
+        /// <remarks>
+        /// 例如：东江立库
+        /// </remarks>
         FIFO,
         /// <summary>
         /// 先进后出
@@ -63,25 +66,18 @@
         /// <remarks>
         /// 例如：山特立库、东方自控立库
         /// </remarks>
-        FILO,
-        /// <summary>
-        /// 两侧进出
-        /// </summary>
-        /// <remarks>
-        /// 例如：东江立库
-        /// </remarks>
-        BSIO
+        FILO
     }
     public enum ShelfType
     {
         /// <summary>
-        /// 单层地堆
+        /// 单层货架
         /// </summary>
         SingleLayer = 0,
         /// <summary>
-        /// 单层货架
+        /// 单层地堆货架
         /// </summary>
-        SingleStack = 1,
+        SingleLayerStack = 1,
         /// <summary>
         /// 穿梭式货架 
         /// </summary> 

@@ -14,16 +14,16 @@ namespace LStorage.Locations
     {
         private readonly IQuerier<Location> _locationQuerier;
         private readonly DistanceSortingAlgorithm _distanceSortingAlgorithm;
-        private readonly CustomRCLDSortingAlgorithm _customRCLDSortingAlgorithm;
+        private readonly LocationSortingAlgorithm _locationSortingAlgorithm;
         public PalletShuttleLocationAllocator(IServiceProvider serviceProvider) : base(serviceProvider)
         {
             _locationQuerier = serviceProvider.GetRequiredService<IQuerier<Location>>();
             _distanceSortingAlgorithm = serviceProvider.GetRequiredService<DistanceSortingAlgorithm>();
-            _customRCLDSortingAlgorithm = serviceProvider.GetRequiredService<CustomRCLDSortingAlgorithm>();
+            _locationSortingAlgorithm = serviceProvider.GetRequiredService<LocationSortingAlgorithm>();
         }
         public override ShelfType[] ShelfTypes => new[] { ShelfType.PalletShuttleRacking };
 
-        public override async Task<AllocateLocationResult> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default)
+        public override async Task<AllocateLocationOutput> AllocateAsync(AllocateLocationContext context, CancellationToken cancellationToken = default)
         {
             if (!ShelfTypes.Contains(context.ToShelf.Type))
             {
@@ -56,7 +56,7 @@ namespace LStorage.Locations
                 && !context.Input.Layer.HasValue
                 && !context.Input.Depth.HasValue)
             {
-                locations = _customRCLDSortingAlgorithm.Sort(locations, context.Input.SortingItems);
+                locations = _locationSortingAlgorithm.Sort(locations, context.Input.SortingItems);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace LStorage.Locations
                 }, context.Input.SortingItems?.Select(x => x.Dimension).ToArray());
             }
 
-            return new AllocateLocationResult(locations?.FirstOrDefault());
+            return new AllocateLocationOutput(locations?.FirstOrDefault());
         }
 
 

@@ -22,6 +22,9 @@ namespace LStorage.Test.Inventories
                     x.AddQuerier<InMemoryMaterialQuerier, Material>();
                     x.AddQuerier<InMemoryPalletQuerier, Pallet>();
                     x.AddQuerier<InMemoryInventoryQuerier, Inventory>();
+
+                    x.AddLocationDependencyFinder<PalletShuttleLocationDependencyFinder>();
+                    x.AddLocationDependencyFinder<SingleLayerLocationDependencyFinder>();
                 });
             ServiceProvider = services.BuildServiceProvider();
         }
@@ -33,7 +36,28 @@ namespace LStorage.Test.Inventories
             var result = await locationAllocatorService.AllocateAsync(new AllocateInventoryInput()
             {
                 MaterialCode = "M1",
+                Qty = 3
+            });
+            // 不为空
+            Assert.IsTrue(result.Count > 0);
+            Assert.IsTrue(result.Sum(x => x.Inventory.Qty) >= 1);
+        }
+        /// <summary>
+        /// 优先存在依赖库位的库存
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task AllocateOrderByDependentCount()
+        {
+            var locationAllocatorService = ServiceProvider.GetRequiredService<IInventoryAllocationService>();
+            var result = await locationAllocatorService.AllocateAsync(new AllocateInventoryInput()
+            {
+                MaterialCode = "M1",
                 Qty = 3,
+                SortingItems = new[]
+                {
+                    new AllocateInventorySorting( AllocateInventorySortingDimension.DependentCount, AllocateInventorySortingDirection.Descending)
+                }
             });
             // 不为空
             Assert.IsTrue(result.Count > 0);

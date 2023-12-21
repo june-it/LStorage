@@ -1,7 +1,7 @@
 ﻿namespace LStorage.Inventories
 {
     /// <summary>
-    /// 表示库存分配参数
+    /// 表示库存分配的输入参数
     /// </summary>
     public class AllocateInventoryInput
     {
@@ -30,7 +30,8 @@
                 new AllocateInventorySorting( AllocateInventorySortingDimension.Layer, AllocateInventorySortingDirection.Ascending),
                 new AllocateInventorySorting( AllocateInventorySortingDimension.Depth, AllocateInventorySortingDirection.Ascending),
                 new AllocateInventorySorting( AllocateInventorySortingDimension.InboundTime, AllocateInventorySortingDirection.Ascending),
-                new AllocateInventorySorting( AllocateInventorySortingDimension.Qty, AllocateInventorySortingDirection.Descending)
+                new AllocateInventorySorting( AllocateInventorySortingDimension.Qty, AllocateInventorySortingDirection.Descending),
+                new AllocateInventorySorting( AllocateInventorySortingDimension.DependentCount, AllocateInventorySortingDirection.Ascending)
         };
     }
 }

@@ -14,7 +14,7 @@ namespace LStorage.Locations
         /// <param name="input">分配库位参数</param>
         /// <param name="cancellationToken">取消令牌</param>
         /// <returns></returns>
-        Task<AllocateLocationResult> AllocateAsync(AllocateLocationInput input, CancellationToken cancellationToken = default);
+        Task<AllocateLocationOutput> AllocateAsync(AllocateLocationInput input, CancellationToken cancellationToken = default);
     }
 
 }

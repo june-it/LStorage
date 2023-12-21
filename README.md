@@ -22,7 +22,9 @@ A1-S1-001-001-001-01 => A1（区域编号） + S1（货架编号） + 001（排�
 
 ## 空库位分配
 
-### 参数说明
+### AllocateAsync
+
+#### AllocateLocationInput参数说明
 | 参数名      | 描述  |  是否必填  |
 | ----------- | ----------- | ----------- |
 | FromCode      | 获取或设置来源库位编码       |   是  |
@@ -32,7 +34,23 @@ A1-S1-001-001-001-01 => A1（区域编号） + S1（货架编号） + 001（排�
 | Column   | 获取或设置分配列序号        |  否  |
 | Layer   | 获取或设置分配层序号        |  否  |
 | Depth   | 获取或设置分配深序号        |  否  |
-| SortingItems   | 获取或设置库位排序方式数组，默认按层升序/排升序/层升序/深降序，可通过排序数组的顺序进行排序优先级，      |  否  |
+| SortingItems   | 获取或设置库位排序方式`AllocateLocationSorting`数组，默认按层升序/排升序/层升序/深降序，可通过排序数组的顺序进行排序优先级，      |  否  |
+
+`AllocateLocationSorting`分别包含两个属性`AllocateLocationSortingDimension`和`AllocateLocationSortingDirection`
+
+#### AllocateLocationSortingDimension参数说明
+| 参数名      | 描述  |  是否必填  |
+| ----------- | ----------- | ----------- |
+| Row      | 根据所在库位的排序号进行排序       |   否  |
+| Column   | 根据所在库位的列序号进行排序        |  否  |
+| Layer   | 根据所在库位的层序号进行排序        |  否  |
+| Depth   | 根据所在库位的深序号进行排序        |  否  |
+
+#### AllocateLocationSortingDirection参数说明
+| 参数名      | 描述  |  是否必填  |
+| ----------- | ----------- | ----------- |
+| Ascending      | 升序       |   否  |
+| Descending   | 降序        |  否  | 
 
 ### 使用示例
 

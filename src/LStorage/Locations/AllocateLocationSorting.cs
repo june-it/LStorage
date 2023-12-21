@@ -20,19 +20,19 @@
     public enum AllocateLocationSortingDimension
     {
         /// <summary>
-        /// 所在库位的排序号
+        /// 根据所在库位的排序号进行排序
         /// </summary>
         Row,
-        /// <summary>
-        /// 所在库位的列序号
+        /// <summary> 
+        /// 根据所在库位的列序号进行排序
         /// </summary>
         Column,
-        /// <summary>
-        /// 所在库位的层序号
+        /// <summary> 
+        /// 根据所在库位的层序号进行排序
         /// </summary>
         Layer,
         /// <summary>
-        /// 所在库位的深序号
+        /// 根据所在库位的深序号进行排序
         /// </summary>
         Depth,
     }

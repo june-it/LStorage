@@ -38,7 +38,12 @@
             }
             #endregion
 
-
+            // 测试修改库位状态
+            _locations.FirstOrDefault(x =>
+            x.RCLD.Layer == 1
+            && x.RCLD.Row == 1
+            && x.RCLD.Column == 1
+            && x.RCLD.Depth == 3).PalletCount = 1;
 
 
 

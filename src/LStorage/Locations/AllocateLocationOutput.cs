@@ -3,9 +3,9 @@
     /// <summary>
     /// 表示库位的分配结果
     /// </summary>
-    public class AllocateLocationResult
+    public class AllocateLocationOutput
     {
-        public AllocateLocationResult(Location location)
+        public AllocateLocationOutput(Location location)
         {
             Location = location;
         }

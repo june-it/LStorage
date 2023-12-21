@@ -6,7 +6,7 @@ namespace LStorage.Locations.SortingAlgorithms
     /// <summary>
     /// 表示自定义RCLD排序算法
     /// </summary>
-    public class CustomRCLDSortingAlgorithm
+    public class LocationSortingAlgorithm
     {
         public List<Location> Sort(IList<Location> locations, AllocateLocationSorting[] sortingItems)
         {

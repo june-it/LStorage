@@ -1,4 +1,5 @@
-﻿using LStorage.Locations;
+﻿using LStorage.Inventories;
+using LStorage.Locations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LStorage
@@ -28,5 +29,13 @@ namespace LStorage
         /// <returns></returns>
         ILStorageBuilder AddLocationAllocator<TLocationAllocator>()
             where TLocationAllocator : class, ILocationAllocator;
+
+        /// <summary>
+        /// 添加库位依赖项查找服务
+        /// </summary>
+        /// <typeparam name="TLocationDependencyFinder">库位依赖项查找服务的类型</typeparam>
+        /// <returns></returns>
+        ILStorageBuilder AddLocationDependencyFinder<TLocationDependencyFinder>()
+            where TLocationDependencyFinder : class, ILocationDependencyFinder;
     }
 }
